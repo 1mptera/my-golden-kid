@@ -14,7 +14,7 @@ public class RandomMenu {
   }
 
   public void run() {
-
+    // Swing 기본 세팅
     frame = new JFrame("한끼 얌얌");
 
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -23,10 +23,11 @@ public class RandomMenu {
 
     frame.setVisible(true);
 
+    // 최상단 네비게이션 버튼 생성(메뉴 만들기, 자랑하기)
     initNavigationButton();
 
+    // 컨텐트 패널 생성
     initContentPanel();
-
   }
 
   public void initNavigationButton() {
@@ -35,7 +36,10 @@ public class RandomMenu {
 
     frame.add(panel);
 
+    // 메뉴 만들기 버튼 생성 및 패널에 추가
     panel.add(createGenerateMenuButton());
+
+    // 게시판 바로가기 버튼 생성 및 패널에 추가
     panel.add(createBulletinBoardButton());
 
     frame.setVisible(true);
@@ -55,7 +59,7 @@ public class RandomMenu {
     JButton button = new JButton("자랑하기");
     button.addActionListener(event -> {
       // content panel 바꾸기
-      BulletinBoardPanel bulletinBoardPanel = new BulletinBoardPanel();
+      JPanel bulletinBoardPanel = new BulletinBoardPanel();
       displayContentPanel(bulletinBoardPanel);
     });
     return button;
@@ -69,6 +73,8 @@ public class RandomMenu {
   public void displayContentPanel(JPanel panel) {
     contentPanel.removeAll();
     contentPanel.add(panel);
+    contentPanel.setVisible(false);
+    contentPanel.setVisible(true);
     frame.setVisible(true);
   }
 }
