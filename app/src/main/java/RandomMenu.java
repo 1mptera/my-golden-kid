@@ -64,11 +64,8 @@ public class RandomMenu {
   private JButton createWriteButton() {
     JButton button = new JButton("글쓰기");
     button.addActionListener(event -> {
-
       PostingPopUp postingPopUp = new PostingPopUp();
       postingPopUp.initPopUp();
-
-
     });
 
     return button;
