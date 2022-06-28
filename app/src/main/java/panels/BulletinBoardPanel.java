@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BulletinBoardPanel extends JPanel {
+
   public BulletinBoardPanel() {
 
     setLayout(new GridLayout(10, 1));
@@ -27,13 +28,15 @@ public class BulletinBoardPanel extends JPanel {
     // 글 입력창
     JLabel content = new JLabel("글 내용");
     JTextField contentBox = new JTextField(20);
+
     this.add(content);
     this.add(contentBox);
 
     // 입력버튼
-    JButton button = new JButton("입력하기");
 
+    JButton button = new JButton("제출하기");
     button.addActionListener(event -> {
+
       String text = contentBox.getText();
       JLabel listSection = new JLabel(text);
       this.add(listSection);
