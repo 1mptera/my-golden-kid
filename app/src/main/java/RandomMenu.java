@@ -1,5 +1,6 @@
 import panels.BulletinBoardPanel;
 import panels.GenerateMenuPanel;
+import panels.GreetingPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,6 +29,8 @@ public class RandomMenu {
 
     // 컨텐트 패널 생성
     initContentPanel();
+
+    // TODO: 홈으로 버튼을 누르지 않아도 실행되는 메인 greeting page가 있어야 할 것 같은데..
   }
 
   public void initNavigationButton() {
@@ -37,20 +40,18 @@ public class RandomMenu {
     frame.add(panel);
 
     // 메뉴 만들기 버튼 생성 및 패널에 추가
-    panel.add(createGenerateMenuButton());
+    panel.add(createGoHomeButton());
 
     // 게시판 바로가기 버튼 생성 및 패널에 추가
     panel.add(createBulletinBoardButton());
-
-    frame.setVisible(true);
   }
 
-  public JButton createGenerateMenuButton() {
-    JButton button = new JButton("메뉴 만들기");
+  public JButton createGoHomeButton() {
+    JButton button = new JButton("홈으로");
     button.addActionListener(event -> {
       // content panel 바꾸기
-      JPanel generateMenuPanel = new GenerateMenuPanel();
-      displayContentPanel(generateMenuPanel);
+      JPanel greetingPanel = new GreetingPanel();
+      displayContentPanel(greetingPanel);
     });
     return button;
   }
@@ -67,6 +68,7 @@ public class RandomMenu {
 
   public void initContentPanel() {
     contentPanel = new JPanel();
+    frame.setVisible(true);
     frame.add(contentPanel);
   }
 

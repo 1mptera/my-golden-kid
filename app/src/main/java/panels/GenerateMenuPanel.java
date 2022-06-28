@@ -27,7 +27,30 @@ public class GenerateMenuPanel extends JPanel {
     JLabel label5 = new JLabel(randomMenuGenerator.dessert());
     this.add(label5);
 
-    this.add(new JButton("다시 만들래요!"));
-    this.add(new JButton("지랑하기"));
+    JButton button1 = new JButton("다시 만들래요!");
+    button1.addActionListener(event -> {
+      this.removeAll();
+
+      JPanel generateMenuPanel = new GenerateMenuPanel();
+
+      this.setVisible(false);
+      this.setVisible(true);
+      this.add(generateMenuPanel);
+      setVisible(true);
+    });
+    this.add(button1);
+
+    JButton button2 = new JButton("지랑하기");
+    button2.addActionListener(event -> {
+      this.removeAll();
+
+      JPanel bulletinBoardPanel = new BulletinBoardPanel();
+
+      this.setVisible(false);
+      this.setVisible(true);
+      this.add(bulletinBoardPanel);
+      setVisible(true);
+    });
+    this.add(button2);
   }
 }
