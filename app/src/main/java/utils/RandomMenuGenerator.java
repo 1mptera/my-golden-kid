@@ -1,15 +1,11 @@
 package utils;
-
 import java.util.Random;
-
 public class RandomMenuGenerator {
-
   public int generateRandomNumber() {
     Random random = new Random();
     int randomIndexNumber = random.nextInt(5);
     return randomIndexNumber;
   }
-
   public String rice() {
     String[] rices = new String[]{"현미밥", "흰쌀밥", "옥수수밥", "계란볶음밥", "흑미밥"};
     String result = rices[generateRandomNumber()];
