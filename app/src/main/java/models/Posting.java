@@ -1,31 +1,20 @@
 package models;
 
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Posting {
-  private String identifier;
-  private int password;
-  private String title;
-  private String text;
 
-  public Posting(String identifier, int password, String title, String text) {
-    this.identifier = identifier;
-    this.password = password;
-    this.title = title;
-    this.text = text;
+  public Posting() {
+   List<String> identifiers = new ArrayList<>();
   }
 
-  public String identifier() {
-    return identifier;
+  public Posting(String identifier, String password, String title, String text) {
+
   }
 
-  public int password() {
-    return password;
-  }
+  public void getIdentifier(String identifier) {
 
-  public String title() {
-    return title;
-  }
-
-  public String text() {
-    return text;
   }
 }
