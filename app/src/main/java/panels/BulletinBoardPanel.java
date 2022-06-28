@@ -1,7 +1,11 @@
 package panels;
 
+import models.Posting;
+import repositories.PostingRepository;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class BulletinBoardPanel extends JPanel {
 

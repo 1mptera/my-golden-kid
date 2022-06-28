@@ -28,7 +28,7 @@ public class RandomMenu {
 
   public void initNavigationButton() {
     JPanel panel = new JPanel();
-    panel.setLayout(new FlowLayout());
+    panel.setLayout(null);
     frame.add(panel, BorderLayout.PAGE_START);
     frame.add(panel);
 
@@ -44,6 +44,7 @@ public class RandomMenu {
 
   public JButton createGoHomeButton() {
     JButton button = new JButton("홈으로");
+    button.setBounds(130, 30, 80, 40);
     button.addActionListener(event -> {
       displayMain();
     });
@@ -53,6 +54,7 @@ public class RandomMenu {
 
   public JButton createBulletinBoardButton() {
     JButton button = new JButton("자랑하기");
+    button.setBounds(260, 30, 80, 40);
     button.addActionListener(event -> {
       BulletinBoardPanel bulletinBoardPanel = new BulletinBoardPanel();
       displayContentPanel(bulletinBoardPanel);
@@ -63,6 +65,7 @@ public class RandomMenu {
 
   private JButton createWriteButton() {
     JButton button = new JButton("글쓰기");
+    button.setBounds(380, 30, 80, 40);
     button.addActionListener(event -> {
       PostingPopUp postingPopUp = new PostingPopUp();
       postingPopUp.initPopUp();
