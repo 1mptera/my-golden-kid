@@ -39,7 +39,6 @@ public class RandomMenu {
   public JButton createGoHomeButton() {
     JButton button = new JButton("홈으로");
     button.addActionListener(event -> {
-
       GreetingPanel greetingPanel = new GreetingPanel();
       displayContentPanel(greetingPanel);
     });
