@@ -1,6 +1,7 @@
 import panels.BulletinBoardPanel;
 import panels.GenerateMenuPanel;
 import panels.GreetingPanel;
+import popups.PostingPopUp;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,10 +64,11 @@ public class RandomMenu {
   private JButton createWriteButton() {
     JButton button = new JButton("글쓰기");
     button.addActionListener(event -> {
-      JFrame writingFrame = new JFrame("글쓰기");
-      writingFrame.setSize(300, 400);
-      writingFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-      writingFrame.setVisible(true);
+
+      PostingPopUp postingPopUp = new PostingPopUp();
+      postingPopUp.initPopUp();
+
+
     });
 
     return button;
