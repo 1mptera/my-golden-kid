@@ -6,26 +6,29 @@ import java.awt.*;
 public class BulletinBoardPanel extends JPanel {
 
   public BulletinBoardPanel() {
-    setLayout(new GridLayout(8, 1));
+
+    setLayout(new GridLayout(10, 1));
 
      // 헤드라인
-    JLabel headline = new JLabel("맛있게 드셨나요? 우리 아이와의 한끼얌얌 추억을 자랑해주세요!");
+    JLabel headline = new JLabel("오늘의 식단 자랑하기");
     this.add(headline);
 
-    // 글 입력창
-    JLabel writer = new JLabel("작성자");
-    JTextField writerBox = new JTextField(20);
+    // 이름 입력창
+    JLabel name = new JLabel("이름");
+    JTextField nameBox = new JTextField(20);
+    this.add(name);
+    this.add(nameBox);
 
-    JLabel password = new JLabel("비밀번호");
+    // 패스워드 입력창
+    JLabel password = new JLabel("비밀번호(숫자 4자리)");
     JTextField passwordBox = new JTextField(20);
-
-    JLabel content = new JLabel("내용");
-    JTextField contentBox = new JTextField(20);
-
-    this.add(writer);
-    this.add(writerBox);
     this.add(password);
     this.add(passwordBox);
+
+    // 글 입력창
+    JLabel content = new JLabel("글 내용");
+    JTextField contentBox = new JTextField(20);
+
     this.add(content);
     this.add(contentBox);
 
@@ -33,9 +36,10 @@ public class BulletinBoardPanel extends JPanel {
 
     JButton button = new JButton("제출하기");
     button.addActionListener(event -> {
-      String post = contentBox.getText();
-      JLabel label2 = new JLabel(post);
-      this.add(label2);
+
+      String text = contentBox.getText();
+      JLabel listSection = new JLabel(text);
+      this.add(listSection);
       this.setVisible(false);
       this.setVisible(true);
     });
