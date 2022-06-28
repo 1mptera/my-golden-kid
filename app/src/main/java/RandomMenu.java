@@ -33,6 +33,7 @@ public class RandomMenu {
 
     panel.add(createGoHomeButton());
     panel.add(createBulletinBoardButton());
+    panel.add(createWriteButton());
   }
 
   public void displayMain() {
@@ -54,6 +55,18 @@ public class RandomMenu {
     button.addActionListener(event -> {
       BulletinBoardPanel bulletinBoardPanel = new BulletinBoardPanel();
       displayContentPanel(bulletinBoardPanel);
+    });
+
+    return button;
+  }
+
+  private JButton createWriteButton() {
+    JButton button = new JButton("글쓰기");
+    button.addActionListener(event -> {
+      JFrame writingFrame = new JFrame("글쓰기");
+      writingFrame.setSize(300, 400);
+      writingFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+      writingFrame.setVisible(true);
     });
 
     return button;
