@@ -32,8 +32,8 @@ public class GenerateMenuPanel extends JPanel {
       this.setVisible(false);
       this.setVisible(true);
     });
-    this.add(button);
 
+    this.add(button);
   }
 
   private void initRandomMenuLabel(RandomMenuGenerator randomMenuGenerator) {
