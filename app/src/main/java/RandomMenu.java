@@ -17,13 +17,12 @@ public class RandomMenu {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setLayout(new GridLayout(3, 1));
     frame.setSize(600, 700);
+    frame.setLocation(300, 300);
     frame.setVisible(true);
 
     initNavigationButton();
 
     initContentPanel();
-
-    // TODO: 홈으로 버튼을 누르지 않아도 실행되는 메인 greeting page가 있어야 할 것 같은데..
   }
 
   public void initNavigationButton() {
@@ -36,15 +35,20 @@ public class RandomMenu {
     panel.add(createBulletinBoardButton());
   }
 
+  public void displayMain() {
+    GreetingPanel greetingPanel = new GreetingPanel();
+    displayContentPanel(greetingPanel);
+  }
+
   public JButton createGoHomeButton() {
     JButton button = new JButton("홈으로");
     button.addActionListener(event -> {
-      GreetingPanel greetingPanel = new GreetingPanel();
-      displayContentPanel(greetingPanel);
+      displayMain();
     });
 
     return button;
   }
+
   public JButton createBulletinBoardButton() {
     JButton button = new JButton("자랑하기");
     button.addActionListener(event -> {
@@ -57,6 +61,7 @@ public class RandomMenu {
 
   public void initContentPanel() {
     contentPanel = new JPanel();
+    displayMain();
     frame.setVisible(true);
     frame.add(contentPanel);
   }
