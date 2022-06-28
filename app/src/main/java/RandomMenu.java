@@ -32,13 +32,14 @@ public class RandomMenu {
     frame.add(panel, BorderLayout.PAGE_START);
     frame.add(panel);
 
+    panel.add(createGoHomeButton());
     panel.add(createBulletinBoardButton());
   }
 
   public JButton createGoHomeButton() {
     JButton button = new JButton("홈으로");
     button.addActionListener(event -> {
-
+      GreetingPanel greetingPanel = new GreetingPanel();
       displayContentPanel(greetingPanel);
     });
 
