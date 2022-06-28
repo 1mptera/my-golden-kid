@@ -40,6 +40,7 @@ public class GenerateMenuPanel extends JPanel {
     });
     this.add(button1);
 
+    JButton button2 = new JButton("자랑하기");
     button2.addActionListener(event -> {
       this.removeAll();
 
