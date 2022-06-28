@@ -4,28 +4,39 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BulletinBoardPanel extends JPanel {
-  private JLabel label2;
-  private String task;
   public BulletinBoardPanel() {
-    setLayout(new GridLayout(5, 1));
+
+    setLayout(new GridLayout(10, 1));
 
      // 헤드라인
-    JLabel label = new JLabel("오늘의 식단 자랑하기");
-    this.add(label);
+    JLabel headline = new JLabel("오늘의 식단 자랑하기");
+    this.add(headline);
 
-    // 글씨 입력창
-    JTextField textField = new JTextField(20);
-    this.add(textField);
+    // 이름 입력창
+    JLabel name = new JLabel("이름");
+    JTextField nameBox = new JTextField(20);
+    this.add(name);
+    this.add(nameBox);
+
+    // 패스워드 입력창
+    JLabel password = new JLabel("비밀번호(숫자 4자리)");
+    JTextField passwordBox = new JTextField(20);
+    this.add(password);
+    this.add(passwordBox);
+
+    // 글 입력창
+    JLabel content = new JLabel("글 내용");
+    JTextField contentBox = new JTextField(20);
+    this.add(content);
+    this.add(contentBox);
 
     // 입력버튼
     JButton button = new JButton("입력하기");
 
     button.addActionListener(event -> {
-      task = textField.getText();
-      label2 = new JLabel(task);
-      JButton botton2 = new JButton("x");
-      this.add(label2);
-      this.add(botton2);
+      String text = contentBox.getText();
+      JLabel listSection = new JLabel(text);
+      this.add(listSection);
       this.setVisible(false);
       this.setVisible(true);
     });
