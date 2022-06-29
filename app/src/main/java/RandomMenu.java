@@ -2,16 +2,25 @@ import panels.BulletinBoardPanel;
 import panels.GenerateMenuPanel;
 import panels.GreetingPanel;
 import popups.PostingPopUp;
+import repositories.PostingRepository;
 
 import javax.swing.*;
 import java.awt.*;
 public class RandomMenu {
   private JFrame frame;
   private JPanel contentPanel;
+  private BulletinBoardPanel bulletinBoardPanel;
+  private PostingRepository postingRepository;
   public static void main(String[] args) {
     RandomMenu application = new RandomMenu();
     application.run();
   }
+
+  public RandomMenu() {
+    postingRepository = new PostingRepository();
+    bulletinBoardPanel = new BulletinBoardPanel(postingRepository);
+  }
+
   public void run() {
     // Swing 기본 세팅
     frame = new JFrame("한끼 얌얌");
@@ -56,18 +65,18 @@ public class RandomMenu {
     JButton button = new JButton("자랑하기");
     button.setBounds(260, 30, 80, 40);
     button.addActionListener(event -> {
-      BulletinBoardPanel bulletinBoardPanel = new BulletinBoardPanel();
+//      bulletinBoardPanel = new BulletinBoardPanel(postingRepository);
       displayContentPanel(bulletinBoardPanel);
     });
 
     return button;
   }
 
-  private JButton createWriteButton() {
+  public JButton createWriteButton() {
     JButton button = new JButton("글쓰기");
     button.setBounds(380, 30, 80, 40);
     button.addActionListener(event -> {
-      PostingPopUp postingPopUp = new PostingPopUp();
+      PostingPopUp postingPopUp = new PostingPopUp(postingRepository, bulletinBoardPanel);
       postingPopUp.initPopUp();
     });
 

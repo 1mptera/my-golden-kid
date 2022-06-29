@@ -1,18 +1,28 @@
 package popups;
 
+import models.Posting;
+import panels.BulletinBoardPanel;
 import repositories.PostingRepository;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class PostingPopUp {
+  private PostingRepository postingRepository;
+  private BulletinBoardPanel bulletinBoardPanel;
   private JFrame writingFrame;
   private JPanel postingPanel;
   private JTextField identifierBox;
   private JTextField passwordBox;
   private JTextField titleBox;
   private JTextArea contentBox;
+
+  public PostingPopUp(PostingRepository postingRepository, BulletinBoardPanel bulletinBoardPanel) {
+    this.postingRepository = postingRepository;
+    this.bulletinBoardPanel = bulletinBoardPanel;
+  }
 
   public void initPopUp() {
     writingFrame = new JFrame("글쓰기");
@@ -91,21 +101,23 @@ public class PostingPopUp {
     JButton submit = new JButton("완료");
     submit.setBounds(385, 420, 70, 35);
     submit.addActionListener(event -> {
-      //TODO: 작성된 내용을 레포지토리로 보내주는 기능 필요
+      postingRepository.addPosting(
+          identifierBox.getText(),
+          passwordBox.getText(),
+          titleBox.getText(),
+          contentBox.getText()
+      );
 
-      PostingRepository postingRepository = new PostingRepository();
+      // TODO: 글쓰기 완료 버튼을 누르는 숙나에 bulletinboard panel 안에 레이블에 타이틀 누적
+      bulletinBoardPanel.removeAll();
 
-      String identifier = identifierBox.getText();
-      postingRepository.getIdentifier(identifier);
+      bulletinBoardPanel.setLayout(new GridLayout(postingRepository.postingsSize() + 1, 1));
 
-      String password = passwordBox.getText();
-      postingRepository.getPassword(password);
+      bulletinBoardPanel.initHeadline();
+      bulletinBoardPanel.initPostingListsSection();
 
-      String title = titleBox.getText();
-      postingRepository.getTitle(title);
-
-      String content = contentBox.getText();
-      postingRepository.getContent(content);
+      bulletinBoardPanel.setVisible(false);
+      bulletinBoardPanel.setVisible(true);
 
       writingFrame.setVisible(false);
     });
