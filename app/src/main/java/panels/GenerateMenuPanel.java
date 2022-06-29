@@ -37,19 +37,19 @@ public class GenerateMenuPanel extends JPanel {
   }
 
   private void initRandomMenuLabel(RandomMenuGenerator randomMenuGenerator) {
-    label = new JLabel(randomMenuGenerator.rice());
+    label = new JLabel("밥: " + randomMenuGenerator.rice());
     this.add(label);
 
-    label2 = new JLabel(randomMenuGenerator.soup());
+    label2 = new JLabel("국: " + randomMenuGenerator.soup());
     this.add(label2);
 
-    label3 = new JLabel(randomMenuGenerator.vegetable());
+    label3 = new JLabel("채소반찬: " + randomMenuGenerator.vegetable());
     this.add(label3);
 
-    label4 = new JLabel(randomMenuGenerator.meat());
+    label4 = new JLabel("고기반찬: " + randomMenuGenerator.meat());
     this.add(label4);
 
-    label5 = new JLabel(randomMenuGenerator.dessert());
+    label5 = new JLabel("간식: " + randomMenuGenerator.dessert());
     this.add(label5);
   }
 }
