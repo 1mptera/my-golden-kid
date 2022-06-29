@@ -1,5 +1,7 @@
 package panels;
 
+
+import popups.DetailsPopUp;
 import repositories.PostingRepository;
 
 import javax.swing.*;
@@ -7,6 +9,7 @@ import java.awt.*;
 
 public class BulletinBoardPanel extends JPanel {
   private PostingRepository postingRepository;
+  private DetailsPopUp detailsPopUp;
 
   public BulletinBoardPanel(PostingRepository postingRepository) {
     this.postingRepository = postingRepository;
@@ -28,8 +31,21 @@ public class BulletinBoardPanel extends JPanel {
   // TODO: 게시판 글 누적하여 여기에 보여주기
   public void initPostingListsSection() {
     for (int i = postingRepository.postingsSize() - 1; i >= 0; i -= 1) {
-      JLabel post1 = new JLabel(postingRepository.showTitle(i));
-      this.add(post1);
+
+      if (postingRepository.showIdentifier(i).isBlank() ||
+          postingRepository.showPassword(i).isBlank() ||
+          postingRepository.showTitle(i).isBlank() ||
+          postingRepository.showText(i).isBlank()) {
+        continue;
+      }
+
+      JButton seeDetailButton = new JButton(postingRepository.showTitle(i));
+      seeDetailButton.addActionListener(event -> {
+        detailsPopUp = new DetailsPopUp(postingRepository, this);
+      });
+
+      this.add(seeDetailButton);
+
     }
   }
 }
