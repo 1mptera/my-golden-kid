@@ -5,12 +5,14 @@ public class Posting {
   private String password;
   private String title;
   private String text;
+  private String time;
 
-  public Posting(String identifier, String password, String title, String text) {
+  public Posting(String identifier, String password, String title, String text, String time) {
     this.identifier = identifier;
     this.password = password;
     this.title = title;
     this.text = text;
+    this.time = time;
   }
 
   public String identifier() {
@@ -27,5 +29,9 @@ public class Posting {
 
   public String text() {
     return this.text;
+  }
+
+  public String time() {
+    return this.time;
   }
 }

@@ -1,6 +1,5 @@
 package popups;
 
-import models.Posting;
 import panels.BulletinBoardPanel;
 import repositories.PostingRepository;
 
@@ -8,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class PostingPopUp {
   private PostingRepository postingRepository;
@@ -86,8 +87,10 @@ public class PostingPopUp {
   }
 
   public void initContentSection() {
-    contentBox = new JTextArea("한끼얌얌과 함께한 즐거운 식사시간을 모두에게 자랑해보세요!");
+    contentBox = new JTextArea("한끼얌얌과 함께한 즐거운 식사시간을 모두에게 자랑해보세요! \n" +
+        "모든 항목을 빠짐없이 기재해주세요.(기재하지 않는 경우 글 사라짐");
     contentBox.setBounds(50, 160, 405, 250);
+    contentBox.setLineWrap(true);
     contentBox.addMouseListener(new MouseAdapter() {
       public void mouseClicked(MouseEvent e) {
         contentBox.setText("");
@@ -101,14 +104,18 @@ public class PostingPopUp {
     JButton submit = new JButton("완료");
     submit.setBounds(385, 420, 70, 35);
     submit.addActionListener(event -> {
+      LocalDateTime currentDateTime = LocalDateTime.now();
+      DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+      String time = currentDateTime.format(formatter);
+
       postingRepository.addPosting(
           identifierBox.getText(),
           passwordBox.getText(),
           titleBox.getText(),
-          contentBox.getText()
+          contentBox.getText(),
+          time
       );
 
-      // TODO: 글쓰기 완료 버튼을 누르는 숙나에 bulletinboard panel 안에 레이블에 타이틀 누적
       bulletinBoardPanel.removeAll();
 
       bulletinBoardPanel.setLayout(new GridLayout(postingRepository.postingsSize() + 1, 1));

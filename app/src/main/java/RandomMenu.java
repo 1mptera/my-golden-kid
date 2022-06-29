@@ -1,5 +1,4 @@
 import panels.BulletinBoardPanel;
-import panels.GenerateMenuPanel;
 import panels.GreetingPanel;
 import popups.PostingPopUp;
 import repositories.PostingRepository;
@@ -11,6 +10,7 @@ public class RandomMenu {
   private JPanel contentPanel;
   private BulletinBoardPanel bulletinBoardPanel;
   private PostingRepository postingRepository;
+
   public static void main(String[] args) {
     RandomMenu application = new RandomMenu();
     application.run();
@@ -18,6 +18,7 @@ public class RandomMenu {
 
   public RandomMenu() {
     postingRepository = new PostingRepository();
+//    detailPopUp = new DetailPopUp();
     bulletinBoardPanel = new BulletinBoardPanel(postingRepository);
   }
 
