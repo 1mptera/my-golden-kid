@@ -11,8 +11,8 @@ import java.awt.event.MouseEvent;
 
 public class DetailsPopUp {
   private final Posting posting;
-//  private PostingRepository postingRepository;
-  //  private BulletinBoardPanel bulletinBoardPanel;
+  private PostingRepository postingRepository;
+  private BulletinBoardPanel bulletinBoardPanel;
   private JFrame detailsFrame;
   private JPanel detailsPanel;
   private JTextField identifierBox;
@@ -20,9 +20,10 @@ public class DetailsPopUp {
   private JTextField titleBox;
   private JTextArea contentBox;
 
-  public DetailsPopUp(Posting posting) {
+  public DetailsPopUp(Posting posting, PostingRepository postingRepository, BulletinBoardPanel bulletinBoardPanel) {
     this.posting = posting;
-//    this.bulletinBoardPanel = bulletinBoardPanel;
+    this.postingRepository = postingRepository;
+    this.bulletinBoardPanel = bulletinBoardPanel;
 
     detailsFrame = new JFrame("상세보기");
     detailsFrame.setSize(500, 500);
@@ -99,31 +100,25 @@ public class DetailsPopUp {
     JButton delete = new JButton("삭제하기");
     delete.setBounds(300, 420, 70, 35);
     delete.addActionListener(event -> {
-//      // TODO: 삭제 버튼을 누를 때 비밀번호를 잘못 입력했다면 fail, 잘 입력했다면 삭제하시겠습니까? 그리고 이걸 리스트에 어떻게 반영할 것인가...
 
-//      postingRepository.deletePosting(
-//          identifierBox.getText(),
-//          passwordBox.getText(),
-//          titleBox.getText(),
-//          contentBox.getText()
-//      );
-//
+      postingRepository.deletePosting(posting);
 
-//      bulletinBoardPanel.removeAll();
-//
-//      bulletinBoardPanel.setLayout(new GridLayout(postingRepository.postingsSize() + 1, 1));
-//
-//      bulletinBoardPanel.initHeadline();
-//      bulletinBoardPanel.initPostingListsSection();
-//
-//      bulletinBoardPanel.setVisible(false);
-//      bulletinBoardPanel.setVisible(true);
-//
-//      detailsFrame.setVisible(false);
+      bulletinBoardPanel.removeAll();
+
+      bulletinBoardPanel.setLayout(new GridLayout(postingRepository.postingsSize() + 1, 1));
+
+      bulletinBoardPanel.initHeadline();
+      bulletinBoardPanel.initPostingListsSection();
+
+      bulletinBoardPanel.setVisible(false);
+      bulletinBoardPanel.setVisible(true);
+
+      detailsFrame.setVisible(false);
     });
 
     detailsPanel.add(delete);
   }
+
 
 
   public void initModifyButton() {

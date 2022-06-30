@@ -50,8 +50,13 @@ public class PostingRepository {
     return postings.get(index).time();
   }
 
-  public void deletePosting(String identifier, String passwordBoxText, String titleBoxText, String text, String time) {
-    // TODO: 어떤 식으로 삭제해야 할지...
+  public void deletePosting(Posting posting) {
+    postings.remove(posting);
+  }
+
+  // TODO: 수정버튼 구현
+  public void modifyPosting(Posting posting) {
+    postings.remove(posting);
   }
 
 
