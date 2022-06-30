@@ -1,15 +1,15 @@
 package popups;
 
-import models.Posting;
+import models.Post;
 import panels.BulletinBoardPanel;
-import repositories.PostingRepository;
+import repositories.PostRepository;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class DetailsPopUp {
-  private Posting posting;
-  private PostingRepository postingRepository;
+  private Post post;
+  private PostRepository postRepository;
   private BulletinBoardPanel bulletinBoardPanel;
   private JFrame detailsFrame;
   private JPanel detailsPanel;
@@ -18,9 +18,9 @@ public class DetailsPopUp {
   private JTextField titleBox;
   private JTextArea contentBox;
 
-  public DetailsPopUp(Posting posting, PostingRepository postingRepository, BulletinBoardPanel bulletinBoardPanel) {
-    this.posting = posting;
-    this.postingRepository = postingRepository;
+  public DetailsPopUp(Post post, PostRepository postRepository, BulletinBoardPanel bulletinBoardPanel) {
+    this.post = post;
+    this.postRepository = postRepository;
     this.bulletinBoardPanel = bulletinBoardPanel;
 
     detailsFrame = new JFrame("상세보기");
@@ -51,7 +51,7 @@ public class DetailsPopUp {
     identifier.setBounds(50, 20, 50, 50);
 
     identifierBox = new JTextField(20);
-    identifierBox.setText(posting.identifier());
+    identifierBox.setText(post.identifier());
     identifierBox.setEditable(false);
     identifierBox.setBounds(110, 30, 150, 30);
     detailsPanel.add(identifier);
@@ -73,7 +73,7 @@ public class DetailsPopUp {
     JLabel title = new JLabel("제목");
     title.setBounds(50, 110, 30, 30);
 
-    titleBox = new JTextField(posting.title());
+    titleBox = new JTextField(post.title());
     titleBox.setBounds(110, 110, 350, 30);
 
     detailsPanel.add(title);
@@ -82,7 +82,7 @@ public class DetailsPopUp {
 
   public void initContentSection() {
     contentBox = new JTextArea();
-    contentBox.setText(posting.text());
+    contentBox.setText(post.text());
     contentBox.setLineWrap(true);
     contentBox.setBounds(50, 160, 405, 250);
     detailsPanel.add(contentBox);
@@ -93,15 +93,15 @@ public class DetailsPopUp {
     delete.setBounds(300, 420, 70, 35);
     delete.addActionListener(event -> {
 
-      if (posting.password().equals(passwordBox.getText())) {
-        postingRepository.deletePosting(posting);
+      if (post.password().equals(passwordBox.getText())) {
+        postRepository.deletePost(post);
 
         bulletinBoardPanel.removeAll();
 
-        bulletinBoardPanel.setLayout(new GridLayout(postingRepository.postingsSize() + 1, 1));
+        bulletinBoardPanel.setLayout(new GridLayout(postRepository.postsSize() + 1, 1));
 
         bulletinBoardPanel.initHeadline();
-        bulletinBoardPanel.initPostingListsSection();
+        bulletinBoardPanel.initPostListsSection();
 
         bulletinBoardPanel.setVisible(false);
         bulletinBoardPanel.setVisible(true);
@@ -121,16 +121,16 @@ public class DetailsPopUp {
     modify.setBounds(385, 420, 70, 35);
     modify.addActionListener(event -> {
 
-      if (posting.password().equals(passwordBox.getText())) {
-        posting = new Posting(identifierBox.getText(), passwordBox.getText(), titleBox.getText(), contentBox.getText(), posting.time());
-        postingRepository.modifyPosting(posting);
+      if (post.password().equals(passwordBox.getText())) {
+        post = new Post(identifierBox.getText(), passwordBox.getText(), titleBox.getText(), contentBox.getText(), post.time());
+        postRepository.modifyPost(post);
 
         bulletinBoardPanel.removeAll();
 
-        bulletinBoardPanel.setLayout(new GridLayout(postingRepository.postingsSize() + 1, 1));
+        bulletinBoardPanel.setLayout(new GridLayout(postRepository.postsSize() + 1, 1));
 
         bulletinBoardPanel.initHeadline();
-        bulletinBoardPanel.initPostingListsSection();
+        bulletinBoardPanel.initPostListsSection();
 
         bulletinBoardPanel.setVisible(false);
         bulletinBoardPanel.setVisible(true);

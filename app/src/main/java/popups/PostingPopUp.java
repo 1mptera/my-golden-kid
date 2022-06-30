@@ -1,7 +1,7 @@
 package popups;
 
 import panels.BulletinBoardPanel;
-import repositories.PostingRepository;
+import repositories.PostRepository;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class PostingPopUp {
-  private PostingRepository postingRepository;
+  private PostRepository postRepository;
   private BulletinBoardPanel bulletinBoardPanel;
   private JFrame writingFrame;
   private JPanel postingPanel;
@@ -20,8 +20,8 @@ public class PostingPopUp {
   private JTextField titleBox;
   private JTextArea contentBox;
 
-  public PostingPopUp(PostingRepository postingRepository, BulletinBoardPanel bulletinBoardPanel) {
-    this.postingRepository = postingRepository;
+  public PostingPopUp(PostRepository postRepository, BulletinBoardPanel bulletinBoardPanel) {
+    this.postRepository = postRepository;
     this.bulletinBoardPanel = bulletinBoardPanel;
   }
 
@@ -101,7 +101,7 @@ public class PostingPopUp {
       DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
       String time = currentDateTime.format(formatter);
 
-      postingRepository.addPosting(
+      postRepository.addPost(
           identifierBox.getText(),
           passwordBox.getText(),
           titleBox.getText(),
@@ -111,10 +111,10 @@ public class PostingPopUp {
 
       bulletinBoardPanel.removeAll();
 
-      bulletinBoardPanel.setLayout(new GridLayout(postingRepository.postingsSize() + 1, 1));
+      bulletinBoardPanel.setLayout(new GridLayout(postRepository.postsSize() + 1, 1));
 
       bulletinBoardPanel.initHeadline();
-      bulletinBoardPanel.initPostingListsSection();
+      bulletinBoardPanel.initPostListsSection();
 
       bulletinBoardPanel.setVisible(false);
       bulletinBoardPanel.setVisible(true);

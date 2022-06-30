@@ -1,25 +1,24 @@
 package panels;
 
-import models.Posting;
 import popups.DetailsPopUp;
-import repositories.PostingRepository;
+import repositories.PostRepository;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class BulletinBoardPanel extends JPanel {
-  private PostingRepository postingRepository;
+  private PostRepository postRepository;
 
-  public BulletinBoardPanel(PostingRepository postingRepository) {
-    this.postingRepository = postingRepository;
+  public BulletinBoardPanel(PostRepository postRepository) {
+    this.postRepository = postRepository;
 
-    this.setLayout(new GridLayout(postingRepository.postingsSize() + 1, 1));
+    this.setLayout(new GridLayout(postRepository.postsSize() + 1, 1));
 
     // 헤드라인
     initHeadline();
 
     // 게시판 글 누적 섹션
-    initPostingListsSection();
+    initPostListsSection();
   }
 
   public void initHeadline() {
@@ -27,23 +26,23 @@ public class BulletinBoardPanel extends JPanel {
     this.add(headline);
   }
 
-  public void initPostingListsSection() {
-    for (int i = postingRepository.postingsSize() - 1; i >= 0; i -= 1) {
+  public void initPostListsSection() {
+    for (int i = postRepository.postsSize() - 1; i >= 0; i -= 1) {
 
-      if (postingRepository.showIdentifier(i).isBlank() ||
-          postingRepository.showPassword(i).isBlank() ||
-          postingRepository.showTitle(i).isBlank() ||
-          postingRepository.showText(i).isBlank()) {
+      if (postRepository.showIdentifier(i).isBlank() ||
+          postRepository.showPassword(i).isBlank() ||
+          postRepository.showTitle(i).isBlank() ||
+          postRepository.showText(i).isBlank()) {
         continue;
       }
 
       JPanel panel = new JPanel();
       panel.setLayout(new FlowLayout());
-      JLabel identifierLabel = new JLabel("작성자 :" + postingRepository.showIdentifier(i));
-      JButton titleButton = new JButton(postingRepository.showTitle(i));
+      JLabel identifierLabel = new JLabel("작성자: " + postRepository.showIdentifier(i));
+      JButton titleButton = new JButton(postRepository.showTitle(i));
       int finalI = i;
       titleButton.addActionListener(event -> {
-        DetailsPopUp detailsPopUp = new DetailsPopUp(postingRepository.showPost(finalI), postingRepository, this);
+        DetailsPopUp detailsPopUp = new DetailsPopUp(postRepository.showPost(finalI), postRepository, this);
       });
 
       panel.add(identifierLabel);
