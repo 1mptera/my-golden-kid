@@ -6,12 +6,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GenerateMenuPanel extends JPanel {
-  private final JButton button;
-  private JLabel label;
-  private JLabel label2;
-  private JLabel label3;
-  private JLabel label4;
-  private JLabel label5;
+  private final JButton restartButton;
+  private JLabel riceLabel;
+  private JLabel soupLabel;
+  private JLabel vegetableLabel;
+  private JLabel meatLabel;
+  private JLabel dessertLabel;
 
   public GenerateMenuPanel() {
 
@@ -21,35 +21,35 @@ public class GenerateMenuPanel extends JPanel {
 
     initRandomMenuLabel(randomMenuGenerator);
 
-    button = new JButton("다시 만들래요!");
-    button.addActionListener(event -> {
+    restartButton = new JButton("다시 만들래요!");
+    restartButton.addActionListener(event -> {
       this.removeAll();
 
       initRandomMenuLabel(randomMenuGenerator);
 
-      this.add(button);
+      this.add(restartButton);
 
       this.setVisible(false);
       this.setVisible(true);
     });
 
-    this.add(button);
+    this.add(restartButton);
   }
 
   public void initRandomMenuLabel(RandomMenuGenerator randomMenuGenerator) {
-    label = new JLabel("밥: " + randomMenuGenerator.rice());
-    this.add(label);
+    riceLabel = new JLabel("밥: " + randomMenuGenerator.rice());
+    this.add(riceLabel);
 
-    label2 = new JLabel("국: " + randomMenuGenerator.soup());
-    this.add(label2);
+    soupLabel = new JLabel("국: " + randomMenuGenerator.soup());
+    this.add(soupLabel);
 
-    label3 = new JLabel("채소반찬: " + randomMenuGenerator.vegetable());
-    this.add(label3);
+    vegetableLabel = new JLabel("채소반찬: " + randomMenuGenerator.vegetable());
+    this.add(vegetableLabel);
 
-    label4 = new JLabel("고기반찬: " + randomMenuGenerator.meat());
-    this.add(label4);
+    meatLabel = new JLabel("고기반찬: " + randomMenuGenerator.meat());
+    this.add(meatLabel);
 
-    label5 = new JLabel("간식: " + randomMenuGenerator.dessert());
-    this.add(label5);
+    dessertLabel = new JLabel("간식: " + randomMenuGenerator.dessert());
+    this.add(dessertLabel);
   }
 }

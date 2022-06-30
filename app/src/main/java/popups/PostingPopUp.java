@@ -50,40 +50,38 @@ public class PostingPopUp {
   }
 
   public void initWriterSection() {
-    JLabel identifier = new JLabel("작성자 id");
+    JLabel identifier = new JLabel("작성자");
     identifier.setBounds(50, 20, 50, 50);
+    postingPanel.add(identifier);
 
     identifierBox = new JTextField(20);
     identifierBox.setBounds(110, 30, 150, 30);
-
-    postingPanel.add(identifier);
     postingPanel.add(identifierBox);
   }
 
   public void initPasswordSection() {
     JLabel password = new JLabel("비밀번호");
     password.setBounds(50, 70, 100, 30);
+    postingPanel.add(password);
+
     passwordBox = new JTextField(4);
     passwordBox.setBounds(110, 70, 150, 30);
-
-    postingPanel.add(password);
     postingPanel.add(passwordBox);
   }
 
   public void initTitleSection() {
     JLabel title = new JLabel("제목");
     title.setBounds(50, 110, 30, 30);
+    postingPanel.add(title);
 
     titleBox = new JTextField(20);
     titleBox.setBounds(110, 110, 350, 30);
-
-    postingPanel.add(title);
     postingPanel.add(titleBox);
   }
 
   public void initContentSection() {
     contentBox = new JTextArea("한끼얌얌과 함께한 즐거운 식사시간을 모두에게 자랑해보세요! \n" +
-        "모든 항목을 빠짐없이 기재해주세요.(기재하지 않는 경우 글 사라짐)");
+        "모든 항목을 빠짐없이 기재해주세요.(기재하지 않는 경우 글이 사라집니다.)");
     contentBox.setBounds(50, 160, 405, 250);
     contentBox.setLineWrap(true);
     contentBox.addMouseListener(new MouseAdapter() {
@@ -99,6 +97,7 @@ public class PostingPopUp {
     JButton submit = new JButton("완료");
     submit.setBounds(385, 420, 70, 35);
     submit.addActionListener(event -> {
+
       // 글 작성하기 버튼을 누르는 순간의 시간을 해당 글의 고유값으로 부여
       LocalDateTime currentDateTime = LocalDateTime.now();
       DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
@@ -114,17 +113,7 @@ public class PostingPopUp {
             time
         );
 
-        bulletinBoardPanel.removeAll();
-
-        bulletinBoardPanel.setLayout(new GridLayout(postRepository.postsSize() + 1, 1));
-
-        bulletinBoardPanel.initHeadline();
-        bulletinBoardPanel.initPostListsSection();
-
-        bulletinBoardPanel.setVisible(false);
-        bulletinBoardPanel.setVisible(true);
-
-        writingFrame.setVisible(false);
+        refreshPanel();
       }
 
       if (postRepository.postsSize() > 0) {
@@ -148,22 +137,25 @@ public class PostingPopUp {
               time
           );
 
-          bulletinBoardPanel.removeAll();
-
-          bulletinBoardPanel.setLayout(new GridLayout(postRepository.postsSize() + 1, 1));
-
-          bulletinBoardPanel.initHeadline();
-          bulletinBoardPanel.initPostListsSection();
-
-          bulletinBoardPanel.setVisible(false);
-          bulletinBoardPanel.setVisible(true);
-
-          writingFrame.setVisible(false);
-
+          refreshPanel();
         }
       }
     });
 
     postingPanel.add(submit);
+  }
+
+  public void refreshPanel() {
+    bulletinBoardPanel.removeAll();
+
+    bulletinBoardPanel.setLayout(new GridLayout(postRepository.postsSize() + 1, 1));
+
+    bulletinBoardPanel.initHeadline();
+    bulletinBoardPanel.initPostListsSection();
+
+    bulletinBoardPanel.setVisible(false);
+    bulletinBoardPanel.setVisible(true);
+
+    writingFrame.setVisible(false);
   }
 }

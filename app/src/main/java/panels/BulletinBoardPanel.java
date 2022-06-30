@@ -14,10 +14,8 @@ public class BulletinBoardPanel extends JPanel {
 
     this.setLayout(new GridLayout(postRepository.postsSize() + 1, 1));
 
-    // 헤드라인
     initHeadline();
 
-    // 게시판 글 누적 섹션
     initPostListsSection();
   }
 
@@ -28,7 +26,6 @@ public class BulletinBoardPanel extends JPanel {
 
   public void initPostListsSection() {
     for (int i = postRepository.postsSize() - 1; i >= 0; i -= 1) {
-
       if (postRepository.showIdentifier(i).isBlank() ||
           postRepository.showPassword(i).isBlank() ||
           postRepository.showTitle(i).isBlank() ||
