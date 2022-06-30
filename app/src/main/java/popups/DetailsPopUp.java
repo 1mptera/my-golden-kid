@@ -10,7 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class DetailsPopUp {
-  private final Posting posting;
+  private Posting posting;
   private PostingRepository postingRepository;
   private BulletinBoardPanel bulletinBoardPanel;
   private JFrame detailsFrame;
@@ -53,7 +53,7 @@ public class DetailsPopUp {
     identifier.setBounds(50, 20, 50, 50);
 
     identifierBox = new JTextField(20);
-    identifierBox.setText(posting.title());
+    identifierBox.setText(posting.identifier());
     identifierBox.setEditable(false);
     identifierBox.setBounds(110, 30, 150, 30);
     detailsPanel.add(identifier);
@@ -119,32 +119,27 @@ public class DetailsPopUp {
     detailsPanel.add(delete);
   }
 
-
-
   public void initModifyButton() {
     JButton modify = new JButton("수정하기");
     modify.setBounds(385, 420, 70, 35);
-//    submit.addActionListener(event -> {
-//      postingRepository.addPosting(
-//          identifierBox.getText(),
-//          passwordBox.getText(),
-//          titleBox.getText(),
-//          contentBox.getText()
-//      );
-//
-//      // TODO: 수정 버튼을 누를 때 비밀번호를 잘못 입력했다면 fail, 잘 입력했다면 수정하시겠습니까? 그리고 이걸 리스트에 어떻게 반영할 것인가...
-//      bulletinBoardPanel.removeAll();
-//
-//      bulletinBoardPanel.setLayout(new GridLayout(postingRepository.postingsSize() + 1, 1));
-//
-//      bulletinBoardPanel.initHeadline();
-//      bulletinBoardPanel.initPostingListsSection();
-//
-//      bulletinBoardPanel.setVisible(false);
-//      bulletinBoardPanel.setVisible(true);
+    modify.addActionListener(event -> {
+      //원래 포스팅에 들어가야 함 <- 수정된 내용
+      posting = new Posting(identifierBox.getText(), passwordBox.getText(), titleBox.getText(), contentBox.getText(), posting.time());
+      postingRepository.modifyPosting(posting);
 
-//      detailsFrame.setVisible(false);
-//    });
+      // TODO: 수정 버튼을 누를 때 비밀번호를 잘못 입력했다면 fail, 잘 입력했다면 수정하시겠습니까? 그리고 이걸 리스트에 어떻게 반영할 것인가...
+      bulletinBoardPanel.removeAll();
+
+      bulletinBoardPanel.setLayout(new GridLayout(postingRepository.postingsSize() + 1, 1));
+
+      bulletinBoardPanel.initHeadline();
+      bulletinBoardPanel.initPostingListsSection();
+
+      bulletinBoardPanel.setVisible(false);
+      bulletinBoardPanel.setVisible(true);
+
+      detailsFrame.setVisible(false);
+    });
 
     detailsPanel.add(modify);
   }
