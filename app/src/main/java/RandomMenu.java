@@ -1,7 +1,7 @@
 import panels.BulletinBoardPanel;
 import panels.GreetingPanel;
 import popups.PostingPopUp;
-import repositories.PostingRepository;
+import repositories.PostRepository;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +9,7 @@ public class RandomMenu {
   private JFrame frame;
   private JPanel contentPanel;
   private BulletinBoardPanel bulletinBoardPanel;
-  private PostingRepository postingRepository;
+  private PostRepository postingRepository;
 
   public static void main(String[] args) {
     RandomMenu application = new RandomMenu();
@@ -17,7 +17,7 @@ public class RandomMenu {
   }
 
   public RandomMenu() {
-    postingRepository = new PostingRepository();
+    postingRepository = new PostRepository();
     bulletinBoardPanel = new BulletinBoardPanel(postingRepository);
   }
 
