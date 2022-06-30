@@ -46,11 +46,6 @@ public class RandomMenu {
     panel.add(createWriteButton());
   }
 
-  public void displayMain() {
-    GreetingPanel greetingPanel = new GreetingPanel();
-    displayContentPanel(greetingPanel);
-  }
-
   public JButton createGoHomeButton() {
     JButton button = new JButton("홈으로");
     button.setBounds(130, 30, 80, 40);
@@ -65,7 +60,6 @@ public class RandomMenu {
     JButton button = new JButton("자랑하기");
     button.setBounds(260, 30, 80, 40);
     button.addActionListener(event -> {
-//      bulletinBoardPanel = new BulletinBoardPanel(postingRepository);
       displayContentPanel(bulletinBoardPanel);
     });
 
@@ -88,6 +82,11 @@ public class RandomMenu {
     displayMain();
     frame.setVisible(true);
     frame.add(contentPanel);
+  }
+
+  public void displayMain() {
+    GreetingPanel greetingPanel = new GreetingPanel();
+    displayContentPanel(greetingPanel);
   }
 
   public void displayContentPanel(JPanel panel) {
