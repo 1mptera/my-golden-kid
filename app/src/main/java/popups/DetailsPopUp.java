@@ -6,8 +6,6 @@ import repositories.PostingRepository;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class DetailsPopUp {
   private Posting posting;
@@ -65,13 +63,7 @@ public class DetailsPopUp {
     password.setBounds(50, 70, 100, 30);
 
     passwordBox = new JTextField(4);
-    passwordBox.setText(posting.password());
     passwordBox.setBounds(110, 70, 250, 30);
-    passwordBox.addMouseListener(new MouseAdapter() {
-      public void mouseClicked(MouseEvent e) {
-        passwordBox.setText("");
-      }
-    });
 
     detailsPanel.add(password);
     detailsPanel.add(passwordBox);
