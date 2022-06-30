@@ -1,14 +1,10 @@
 package panels;
 
-import models.Posting;
 import popups.DetailsPopUp;
 import repositories.PostingRepository;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 public class BulletinBoardPanel extends JPanel {
   private PostingRepository postingRepository;

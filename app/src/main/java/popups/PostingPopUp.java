@@ -61,15 +61,8 @@ public class PostingPopUp {
   public void initPasswordSection() {
     JLabel password = new JLabel("비밀번호");
     password.setBounds(50, 70, 100, 30);
-
     passwordBox = new JTextField(4);
-    passwordBox.setText("숫자 4자리를 입력하세요");
     passwordBox.setBounds(110, 70, 150, 30);
-    passwordBox.addMouseListener(new MouseAdapter() {
-      public void mouseClicked(MouseEvent e) {
-        passwordBox.setText("");
-      }
-    });
 
     postingPanel.add(password);
     postingPanel.add(passwordBox);
