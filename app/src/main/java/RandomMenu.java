@@ -18,7 +18,6 @@ public class RandomMenu {
 
   public RandomMenu() {
     postingRepository = new PostingRepository();
-//    detailPopUp = new DetailPopUp();
     bulletinBoardPanel = new BulletinBoardPanel(postingRepository);
   }
 

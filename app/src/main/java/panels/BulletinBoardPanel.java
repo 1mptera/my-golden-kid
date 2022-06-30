@@ -43,7 +43,7 @@ public class BulletinBoardPanel extends JPanel {
 
       JPanel panel = new JPanel();
       panel.setLayout(new FlowLayout());
-      JLabel identifierLabel = new JLabel(postingRepository.showIdentifier(i));
+      JLabel identifierLabel = new JLabel("작성자 :" + postingRepository.showIdentifier(i));
       JButton titleButton = new JButton(postingRepository.showTitle(i));
       int finalI = i;
       titleButton.addActionListener(event -> {

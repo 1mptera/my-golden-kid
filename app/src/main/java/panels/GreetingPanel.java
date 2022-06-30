@@ -11,7 +11,6 @@ public class GreetingPanel extends JPanel {
     this.add(title1);
     title1.setBounds(100, 100, 100, 100);
 
-
     JLabel title2 = new JLabel("한끼얌얌으로 식사메뉴 걱정 끝!");
     this.add(title2);
 
