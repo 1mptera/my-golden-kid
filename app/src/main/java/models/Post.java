@@ -1,13 +1,13 @@
 package models;
 
-public class Posting {
+public class Post {
   private String identifier;
   private String password;
   private String title;
   private String text;
   private String time;
 
-  public Posting(String identifier, String password, String title, String text, String time) {
+  public Post(String identifier, String password, String title, String text, String time) {
     this.identifier = identifier;
     this.password = password;
     this.title = title;
