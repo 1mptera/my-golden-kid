@@ -88,7 +88,7 @@ public class PostingPopUp {
 
   public void initContentSection() {
     contentBox = new JTextArea("한끼얌얌과 함께한 즐거운 식사시간을 모두에게 자랑해보세요! \n" +
-        "모든 항목을 빠짐없이 기재해주세요.(기재하지 않는 경우 글 사라짐");
+        "모든 항목을 빠짐없이 기재해주세요.(기재하지 않는 경우 글 사라짐)");
     contentBox.setBounds(50, 160, 405, 250);
     contentBox.setLineWrap(true);
     contentBox.addMouseListener(new MouseAdapter() {
