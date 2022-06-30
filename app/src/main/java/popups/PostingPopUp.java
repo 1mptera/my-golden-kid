@@ -1,5 +1,7 @@
 package popups;
 
+import models.Post;
+
 import panels.BulletinBoardPanel;
 import repositories.PostRepository;
 
@@ -97,29 +99,69 @@ public class PostingPopUp {
     JButton submit = new JButton("완료");
     submit.setBounds(385, 420, 70, 35);
     submit.addActionListener(event -> {
+      // 글 작성하기 버튼을 누르는 순간의 시간을 해당 글의 고유값으로 부여
       LocalDateTime currentDateTime = LocalDateTime.now();
       DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
       String time = currentDateTime.format(formatter);
 
-      postRepository.addPost(
-          identifierBox.getText(),
-          passwordBox.getText(),
-          titleBox.getText(),
-          contentBox.getText(),
-          time
-      );
+      // 기존 게시글의 id와 내가 원하는 id가 겹치는지 확인(겹치면 글쓸 수 없음)
+      if (postRepository.postsSize() == 0) {
+        postRepository.addPost(
+            identifierBox.getText(),
+            passwordBox.getText(),
+            titleBox.getText(),
+            contentBox.getText(),
+            time
+        );
 
-      bulletinBoardPanel.removeAll();
+        bulletinBoardPanel.removeAll();
 
-      bulletinBoardPanel.setLayout(new GridLayout(postRepository.postsSize() + 1, 1));
+        bulletinBoardPanel.setLayout(new GridLayout(postRepository.postsSize() + 1, 1));
 
-      bulletinBoardPanel.initHeadline();
-      bulletinBoardPanel.initPostListsSection();
+        bulletinBoardPanel.initHeadline();
+        bulletinBoardPanel.initPostListsSection();
 
-      bulletinBoardPanel.setVisible(false);
-      bulletinBoardPanel.setVisible(true);
+        bulletinBoardPanel.setVisible(false);
+        bulletinBoardPanel.setVisible(true);
 
-      writingFrame.setVisible(false);
+        writingFrame.setVisible(false);
+      }
+
+      if (postRepository.postsSize() > 0) {
+
+        boolean isUnique = true;
+
+        for (int i = 0; i < postRepository.postsSize(); i += 1) {
+          if (postRepository.showIdentifier(i).equals(identifierBox.getText())) {
+            identifierBox.setBackground(Color.PINK);
+            isUnique = false;
+            break;
+          }
+        }
+
+        if (isUnique) {
+          postRepository.addPost(
+              identifierBox.getText(),
+              passwordBox.getText(),
+              titleBox.getText(),
+              contentBox.getText(),
+              time
+          );
+
+          bulletinBoardPanel.removeAll();
+
+          bulletinBoardPanel.setLayout(new GridLayout(postRepository.postsSize() + 1, 1));
+
+          bulletinBoardPanel.initHeadline();
+          bulletinBoardPanel.initPostListsSection();
+
+          bulletinBoardPanel.setVisible(false);
+          bulletinBoardPanel.setVisible(true);
+
+          writingFrame.setVisible(false);
+
+        }
+      }
     });
 
     postingPanel.add(submit);
