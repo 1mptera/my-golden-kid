@@ -1,5 +1,6 @@
 package panels;
 
+import models.Posting;
 import popups.DetailsPopUp;
 import repositories.PostingRepository;
 
@@ -26,7 +27,6 @@ public class BulletinBoardPanel extends JPanel {
     this.add(headline);
   }
 
-  // TODO: 게시판 글 누적하여 여기에 보여주기
   public void initPostingListsSection() {
     for (int i = postingRepository.postingsSize() - 1; i >= 0; i -= 1) {
 

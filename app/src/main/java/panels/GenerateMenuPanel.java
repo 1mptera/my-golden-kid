@@ -36,7 +36,7 @@ public class GenerateMenuPanel extends JPanel {
     this.add(button);
   }
 
-  private void initRandomMenuLabel(RandomMenuGenerator randomMenuGenerator) {
+  public void initRandomMenuLabel(RandomMenuGenerator randomMenuGenerator) {
     label = new JLabel("밥: " + randomMenuGenerator.rice());
     this.add(label);
 
