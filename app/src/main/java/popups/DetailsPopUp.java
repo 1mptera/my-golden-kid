@@ -93,19 +93,24 @@ public class DetailsPopUp {
     delete.setBounds(300, 420, 70, 35);
     delete.addActionListener(event -> {
 
-      postingRepository.deletePosting(posting);
+      if (posting.password().equals(passwordBox.getText())) {
+        postingRepository.deletePosting(posting);
 
-      bulletinBoardPanel.removeAll();
+        bulletinBoardPanel.removeAll();
 
-      bulletinBoardPanel.setLayout(new GridLayout(postingRepository.postingsSize() + 1, 1));
+        bulletinBoardPanel.setLayout(new GridLayout(postingRepository.postingsSize() + 1, 1));
 
-      bulletinBoardPanel.initHeadline();
-      bulletinBoardPanel.initPostingListsSection();
+        bulletinBoardPanel.initHeadline();
+        bulletinBoardPanel.initPostingListsSection();
 
-      bulletinBoardPanel.setVisible(false);
-      bulletinBoardPanel.setVisible(true);
+        bulletinBoardPanel.setVisible(false);
+        bulletinBoardPanel.setVisible(true);
 
-      detailsFrame.setVisible(false);
+        detailsFrame.setVisible(false);
+      }
+
+      passwordBox.setBackground(Color.PINK);
+
     });
 
     detailsPanel.add(delete);
@@ -115,22 +120,26 @@ public class DetailsPopUp {
     JButton modify = new JButton("수정하기");
     modify.setBounds(385, 420, 70, 35);
     modify.addActionListener(event -> {
-      //원래 포스팅에 들어가야 함 <- 수정된 내용
-      posting = new Posting(identifierBox.getText(), passwordBox.getText(), titleBox.getText(), contentBox.getText(), posting.time());
-      postingRepository.modifyPosting(posting);
 
-      // TODO: 수정 버튼을 누를 때 비밀번호를 잘못 입력했다면 fail, 잘 입력했다면 수정하시겠습니까? 그리고 이걸 리스트에 어떻게 반영할 것인가...
-      bulletinBoardPanel.removeAll();
+      if (posting.password().equals(passwordBox.getText())) {
+        posting = new Posting(identifierBox.getText(), passwordBox.getText(), titleBox.getText(), contentBox.getText(), posting.time());
+        postingRepository.modifyPosting(posting);
 
-      bulletinBoardPanel.setLayout(new GridLayout(postingRepository.postingsSize() + 1, 1));
+        bulletinBoardPanel.removeAll();
 
-      bulletinBoardPanel.initHeadline();
-      bulletinBoardPanel.initPostingListsSection();
+        bulletinBoardPanel.setLayout(new GridLayout(postingRepository.postingsSize() + 1, 1));
 
-      bulletinBoardPanel.setVisible(false);
-      bulletinBoardPanel.setVisible(true);
+        bulletinBoardPanel.initHeadline();
+        bulletinBoardPanel.initPostingListsSection();
 
-      detailsFrame.setVisible(false);
+        bulletinBoardPanel.setVisible(false);
+        bulletinBoardPanel.setVisible(true);
+
+        detailsFrame.setVisible(false);
+      }
+
+      passwordBox.setBackground(Color.PINK);
+
     });
 
     detailsPanel.add(modify);
