@@ -1,5 +1,6 @@
 package popups;
 
+import models.Posting;
 import panels.BulletinBoardPanel;
 import repositories.PostingRepository;
 
@@ -9,8 +10,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class DetailsPopUp {
-  private PostingRepository postingRepository;
-  private BulletinBoardPanel bulletinBoardPanel;
+  private final Posting posting;
+//  private PostingRepository postingRepository;
+  //  private BulletinBoardPanel bulletinBoardPanel;
   private JFrame detailsFrame;
   private JPanel detailsPanel;
   private JTextField identifierBox;
@@ -18,9 +20,9 @@ public class DetailsPopUp {
   private JTextField titleBox;
   private JTextArea contentBox;
 
-  public DetailsPopUp(PostingRepository postingRepository, BulletinBoardPanel bulletinBoardPanel) {
-    this.postingRepository = postingRepository;
-    this.bulletinBoardPanel = bulletinBoardPanel;
+  public DetailsPopUp(Posting posting) {
+    this.posting = posting;
+//    this.bulletinBoardPanel = bulletinBoardPanel;
 
     detailsFrame = new JFrame("상세보기");
     detailsFrame.setSize(500, 500);
@@ -50,10 +52,9 @@ public class DetailsPopUp {
     identifier.setBounds(50, 20, 50, 50);
 
     identifierBox = new JTextField(20);
-    identifierBox.setText("안녕");
+    identifierBox.setText(posting.title());
     identifierBox.setEditable(false);
     identifierBox.setBounds(110, 30, 150, 30);
-
     detailsPanel.add(identifier);
     detailsPanel.add(identifierBox);
   }
@@ -63,7 +64,7 @@ public class DetailsPopUp {
     password.setBounds(50, 70, 100, 30);
 
     passwordBox = new JTextField(4);
-    passwordBox.setText("글 작성 시 입력했던 숫자 4자리를 입력하세요");
+    passwordBox.setText(posting.password());
     passwordBox.setBounds(110, 70, 250, 30);
     passwordBox.addMouseListener(new MouseAdapter() {
       public void mouseClicked(MouseEvent e) {
@@ -79,7 +80,7 @@ public class DetailsPopUp {
     JLabel title = new JLabel("제목");
     title.setBounds(50, 110, 30, 30);
 
-    titleBox = new JTextField(20);
+    titleBox = new JTextField(posting.title());
     titleBox.setBounds(110, 110, 350, 30);
 
     detailsPanel.add(title);
@@ -88,6 +89,7 @@ public class DetailsPopUp {
 
   public void initContentSection() {
     contentBox = new JTextArea();
+    contentBox.setText(posting.text());
     contentBox.setLineWrap(true);
     contentBox.setBounds(50, 160, 405, 250);
     detailsPanel.add(contentBox);
