@@ -41,15 +41,13 @@ public class BulletinBoardPanel extends JPanel {
         continue;
       }
 
-
-
       JPanel panel = new JPanel();
       panel.setLayout(new FlowLayout());
       JLabel identifierLabel = new JLabel(postingRepository.showIdentifier(i));
       JButton titleButton = new JButton(postingRepository.showTitle(i));
       int finalI = i;
       titleButton.addActionListener(event -> {
-        DetailsPopUp detailsPopUp = new DetailsPopUp(postingRepository.showPost(finalI));
+        DetailsPopUp detailsPopUp = new DetailsPopUp(postingRepository.showPost(finalI), postingRepository, this);
       });
 
       panel.add(identifierLabel);
@@ -59,36 +57,3 @@ public class BulletinBoardPanel extends JPanel {
     }
   }
 }
-//      titleButton.addActionListener(event -> {
-//
-//      }
-
-//      public void initWriterSection () {
-//        JLabel identifier = new JLabel("작성자 id");
-//        identifier.setBounds(50, 20, 50, 50);
-//
-//        JTextField identifierBox = new JTextField(20);
-//        identifierBox.setText("안녕");
-//        identifierBox.setEditable(false);
-//        identifierBox.setBounds(110, 30, 150, 30);
-//        panel.add(identifier);
-//        panel.add(identifierBox);
-//      }
-//    }
-//  }
-
-
-//
-//  public void initWriterSection() {
-//    JLabel identifier = new JLabel("작성자 id");
-//    identifier.setBounds(50, 20, 50, 50);
-//
-//    JTextField identifierBox = new JTextField(20);
-//    identifierBox.setText("안녕");
-//    identifierBox.setEditable(false);
-//    identifierBox.setBounds(110, 30, 150, 30);
-//    detailsPanel.add(identifier);
-//    detailsPanel.add(identifierBox);
-//  }
-//}
-
